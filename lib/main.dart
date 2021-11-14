@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx_basics/screens/details_page.dart';
-import 'package:getx_basics/screens/password_change.dart';
+import 'package:getx_basics/getx_basics/screens/details_page.dart';
+import 'package:getx_basics/getx_basics/screens/password_change.dart';
 
 void main() {
   runApp(const MyApp());
@@ -71,15 +71,25 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const ElevatedButton(
-                onPressed: _goToSecondPage,
-                child: Text("Go to the Details Page!")),
+              onPressed: _goToSecondPage,
+              child: Text("Go to the Details Page!"),
+            ),
             const ElevatedButton(
-                onPressed: _showSnackBar, child: Text("Show Snack Bar!")),
+              onPressed: _showSnackBar,
+              child: Text("Show Snack Bar!"),
+            ),
             const ElevatedButton(
-                onPressed: _showDialog, child: Text("Show Dialog!")),
+              onPressed: _showDialog,
+              child: Text("Show Dialog!"),
+            ),
             ElevatedButton(
-                onPressed: _showBottomSheet,
-                child: const Text("Show Bottom Sheet!")),
+              onPressed: _showBottomSheet,
+              child: const Text("Show Bottom Sheet!"),
+            ),
+            const ElevatedButton(
+              onPressed: _showDialog2,
+              child: Text("Show Dialog 2!"),
+            ),
           ],
         ),
       ),
@@ -128,6 +138,24 @@ void _showDialog() {
       // ignore: avoid_print
       print("Cancelled!");
       Get.back();
+    },
+  );
+}
+
+void _showDialog2() {
+  // ignore: avoid_print
+  print("Showing 2nd Dialog");
+
+  Get.defaultDialog(
+    title: "Warning",
+    content: const Text("Wrong Password!"),
+    // barrierDismissible: false,
+    textConfirm: "Confirm",
+    textCancel: "Cancel",
+    confirmTextColor: Colors.white,
+    cancelTextColor: Colors.red,
+    onConfirm: () {
+      Get.to(() => const PasswordChangePage());
     },
   );
 }
